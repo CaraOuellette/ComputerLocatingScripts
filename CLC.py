@@ -102,7 +102,7 @@ if __name__ == '__main__':
             print("The names among unlocated computers" +
                   " will be computed, by 5 character string.")
             #documenting weird names. this could be written somewhere too.
-            for comp in supermysteries:
+            """for comp in supermysteries:
                 if comp.name[0:5] in charDict.keys():
                     val = charDict[comp.name[0:5]]
                     charDict[comp.name[0:5]] = val + 1
@@ -116,7 +116,7 @@ if __name__ == '__main__':
             ImportTools.ImportTools.writeLog(file,
                                             writefileL + file,
                                             writepathL, writefileU + file,
-                                            writepathU, loglocation)
+                                            writepathU, loglocation)"""
     processedreportfile.close()
     print("This concludes the script. Press any key to exit.")
     input()
