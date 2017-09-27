@@ -33,8 +33,6 @@ class Location:
         self.name = name
         self.prefixes = self.format_prefixes(prefixes)
         self.IP = self.format_IP(IP)
-        #If this location has other representations, document that
-        #possible antiquated, based on mistaken conception of IP checking
         self.format_dicts(domain, region, site)
 
     def format_prefixes(self, prefixString):
