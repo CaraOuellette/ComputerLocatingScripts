@@ -1,13 +1,31 @@
 class Computer:
+    """An abstract represntation of a computer, emphasizing relevant attributes.
+    
+    format_IP -- Returns a list of ints from a string representing an IP address (not IPv6.)
+    """
 
-    def __init__(self, name, IP, domain="apotex.ca"):
+    def __init__(self, name, IP):
+        """Returns a Computer object."""
         self.name = name.upper()
-        self.IP = self.formatIP(IP)
-        self.domain = domain
-        self.location = ""
+        self.IP = self.format_IP(IP)
+        self.domain = ""
+        self.region = ""
+        # general
+        self.site = ""
+        #more specific
+        self.site2 = ""
+        #anticipating future requirements
+        """self.user = ""
+        self.model = ""
+        self.cluster = ""
+        self.hub = ""
+        self.CPUs = ""
+        self.cores = """""
 
     def formatIP(self, IP):
-        """breaks up a string representation of an IP into list of 4 ints"""
+        """Returns a list of ints from a string representation of an IP address.
+        IPv6 is not supported, and will be returned as [0,0,0,0].
+        """
         if "." in IP:
             finIP = IP.split(".")
             if len(finIP) < 4:
