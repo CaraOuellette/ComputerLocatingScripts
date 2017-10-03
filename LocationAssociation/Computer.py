@@ -7,7 +7,7 @@ class Computer:
     def __init__(self, name, IP):
         """Returns a Computer object."""
         self.name = name.upper()
-        self.IP = self.format_IP(IP)
+        self.IP = self.formatIP(IP)
         self.domain = ""
         self.region = ""
         # general

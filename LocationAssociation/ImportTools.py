@@ -33,41 +33,36 @@ class ImportTools:
 
     def read_locations(locfile):
         """File-reader for Location .csv files. Returns a list of Location objects."""
+        locations = []
         with open(locfile, 'rt') as csvfile:
-            locations = []
-            locreader = csv.DictReader(csvfile, delimiter=',')
-            try:
-                for loc in locreader:
-                    if "IP" in locreader.fieldnames:
-                        locations.append(locationassociation.location.location(
-                            loc['Domain'],
-                            loc['Region'],
-                            loc['Site'],
-                            loc["Name"],
-                            loc["Prefixes"], 
-                            loc["IP"])
-                            )
-                    else:
-                        locations.append(locationassociation.location.Location(
-                            loc['Domain'],
-                            loc['Region'],
-                            loc['Site'],
-                            loc["Name"],
-                            loc["Prefixes"])
-                            )
-                return locations
-            except KeyError:
-                print("The supplied file was improperly formatted."
-                      + "Check that location fields and 'Prefixes' field names "
-                      + "are present.")
-            finally:
-                return locations
+            
+            locreader = csv.DictReader(csvfile)
+            for loc in locreader:
+                if "IP" in locreader.fieldnames:
+                    locations.append(locationassociation.location.Location(
+                        loc['Domain'],
+                        loc['Region'],
+                        loc['Site'],
+                        "",
+                        loc["Prefixes"], 
+                        loc["IP"])
+                        )
+                else:
+                    locations.append(locationassociation.location.Location(
+                        loc['Domain'],
+                        loc['Region'],
+                        loc['Site'],
+                        "",
+                        loc["Prefixes"]),
+                        ""
+                        )
+            return locations
 
     def write_computers(cmplist, destination):
         """File-writer for located comps (Name,IP,Domain,Location)"""
         with open(destination, 'wt') as csvfile:
             writer = csv.DictWriter(csvfile,
-                        ["Device Name","IP", "Domain", "Location"])
+                        ["Device Name","IP", "Domain", "Region", "Site", "Location"])
             writer.writeheader()
             for comp in cmplist:
                 row = {}

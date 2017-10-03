@@ -5,13 +5,15 @@ class AssociationTool:
 
         Returns a string. "" If no match found.
         comp: A Computer.
-        location: A Location.
+        locations: A list of locations
         """
+        temploc = ""
         if not comp.IP == [0, 0, 0, 0]:
-            if comp.IP[0] == location.IP[0] and comp.IP[1] == location.IP[1]:
-                if comp.IP[2] >= location.IP[2]:
-                    return location.site
-        return ""
+            for loc in locations:
+                if comp.IP[0] == location.IP[0] and comp.IP[1] == location.IP[1]:
+                    if comp.IP[2] >= location.IP[2]:
+                        temploc = location.site
+        return temploc
 
     def compareByName(name, locations):
         """Compare the 3-5 letters of Computer name to find a  location.
@@ -21,7 +23,7 @@ class AssociationTool:
         locations: a list of Locations.
         """
         for loc in locations:
-            if loc.hasPrefixes:
+            if loc.prefixes:
                 for prefix in loc.prefixes:
                     if name[0:5] == prefix:
                         return loc.site
